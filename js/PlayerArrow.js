@@ -12,13 +12,16 @@ class PlayerArrow {
     this.velocity = 0;
     World.add(world, this.body);
   }
-  shoot(){
-    var newAngle=arrow1.angle-100;
-    newAngle=newAngle*(3.14/180);
-    var velocity=p5.Vector.fromAngle(newAngle)
-    velocity.mult(0.5)
+  shoot(archerAngle){
+   archerAngle+=90
+    
+    this.velocity=p5.Vector.fromAngle(archerAngle*(3.14/180))
+    this.velocity.mult(0.5)
+   Matter.Body.setVelocity(this.body,{
+     x:this.velocity.x*(3.14/180),
+     y:this.velocity.y*(3.14/180)
+   })
    Matter.Body.setStatic(this.body,false)
-   Matter.Body.setVelocity(this.body,{x:velocity.x*(180/3.14),y:velocity.y*(180/3.14)})
    
    
    
